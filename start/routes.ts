@@ -30,5 +30,6 @@ Route.group(() => {
 
     Route.post('/auth/login', 'AuthController.login')
     Route.post('/auth/logout', 'AuthController.logout')
+    Route.post('/auth/verify', 'AuthController.verify')
   }).prefix('/v1')
 }).prefix('/api')
