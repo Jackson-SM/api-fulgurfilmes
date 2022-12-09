@@ -22,14 +22,19 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
   Route.group(() => {
+    Route.resource('video', 'VideosController').apiOnly()
     Route.resource('users', 'UsersController')
       .middleware({
         '*': ['auth'],
       })
       .apiOnly()
+      .except(['store'])
 
-    Route.post('/auth/login', 'AuthController.login')
-    Route.post('/auth/logout', 'AuthController.logout')
-    Route.post('/auth/verify', 'AuthController.verify')
+    Route.group(() => {
+      Route.post('/login', 'AuthController.login')
+      Route.post('/logout', 'AuthController.logout')
+      Route.post('/verify', 'AuthController.verify')
+      Route.post('/register', 'AuthController.register')
+    }).prefix('/auth')
   }).prefix('/v1')
 }).prefix('/api')

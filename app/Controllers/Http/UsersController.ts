@@ -8,18 +8,6 @@ export default class UsersController {
     return users
   }
 
-  public async store({ request }: HttpContextContract) {
-    const { email, name, password } = request.only(['email', 'name', 'password'])
-
-    const user = await User.create({
-      email,
-      name,
-      password,
-    })
-
-    return user
-  }
-
   public async show({ params }: HttpContextContract) {
     const user = await User.findOrFail(params.id)
 
