@@ -1,3 +1,4 @@
+import Application from '@ioc:Adonis/Core/Application'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Video from 'App/Models/Video'
 
@@ -8,8 +9,8 @@ export default class VideosController {
     return videos
   }
 
-  public async store({ request }: HttpContextContract) {
-    const { title, sinopse, year, type, seasons, time, episodes, views, classificationIndicative } =
+  public async store({ response, request }: HttpContextContract) {
+    const { title, sinopse, year, type, seasons, time, episodes, views, classificationIndicative, cover } =
       request.only([
         'title',
         'sinopse',
@@ -20,6 +21,7 @@ export default class VideosController {
         'episodes',
         'views',
         'classificationIndicative',
+        'cover'
       ])
 
     const video = await Video.create({
@@ -34,7 +36,19 @@ export default class VideosController {
       classificationIndicative,
     })
 
-    return video
+    const coverImage = request.file('cover')
+
+    if(!coverImage){
+      return "Please upload cover image"
+    }
+
+    await coverImage.move(Application.publicPath(`images/${video.id}`), {
+      name: `cover.${coverImage.extname}`
+    })
+
+    response.send({
+      message: 'Success'
+    })
   }
 
   public async show({ params }: HttpContextContract) {
