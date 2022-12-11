@@ -37,6 +37,9 @@
       }
     ]
   },
+  "directories": {
+    "public": "public"
+  },
   "testProviders": [
     "@japa/preset-adonis/TestsProvider"
   ]
