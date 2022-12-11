@@ -1,16 +1,18 @@
 import Application from '@ioc:Adonis/Core/Application'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import AssetsVideo from 'App/Models/AssetsVideo'
 import Video from 'App/Models/Video'
+import { cuid } from '@ioc:Adonis/Core/Helpers'
 
 export default class VideosController {
   public async index({}: HttpContextContract) {
-    const videos = await Video.all()
+    const videos = await Video.query().preload('assets')
 
     return videos
   }
 
   public async store({ response, request }: HttpContextContract) {
-    const { title, sinopse, year, type, seasons, time, episodes, views, classificationIndicative, cover } =
+    const { title, sinopse, year, type, seasons, time, episodes, views, classificationIndicative } =
       request.only([
         'title',
         'sinopse',
@@ -21,7 +23,6 @@ export default class VideosController {
         'episodes',
         'views',
         'classificationIndicative',
-        'cover'
       ])
 
     const video = await Video.create({
@@ -37,17 +38,30 @@ export default class VideosController {
     })
 
     const coverImage = request.file('cover')
+    const backgroundImage = request.file('backgroundImage')
 
-    if(!coverImage){
-      return "Please upload cover image"
+    if (!(coverImage && backgroundImage)) {
+      return 'Please upload cover image'
     }
 
+    const coverImageNewName = `${cuid()}.${coverImage.extname}`
+    const backgroundImageNewName = `${cuid()}.${backgroundImage.extname}`
+
     await coverImage.move(Application.publicPath(`images/${video.id}`), {
-      name: `cover.${coverImage.extname}`
+      name: coverImageNewName,
+    })
+    await backgroundImage.move(Application.publicPath(`images/${video.id}`), {
+      name: backgroundImageNewName,
+    })
+
+    const assetsVideo = await AssetsVideo.create({
+      cover_image: coverImageNewName,
+      background_image: backgroundImageNewName,
+      videoId: video.id,
     })
 
     response.send({
-      message: 'Success'
+      message: 'Success',
     })
   }
 

@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary().unique().notNullable()
       table.string('title').notNullable()
-      table.string('sinopse').notNullable()
+      table.text('sinopse').notNullable()
       table.string('type').notNullable()
       table.integer('year').notNullable()
       table.integer('seasons')

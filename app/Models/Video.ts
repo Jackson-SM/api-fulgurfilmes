@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import AssetsVideo from './AssetsVideo'
 
 export default class Video extends BaseModel {
   @column({ isPrimary: true })
@@ -31,6 +32,9 @@ export default class Video extends BaseModel {
 
   @column()
   public classificationIndicative: number
+
+  @hasOne(() => AssetsVideo)
+  public assets: HasOne<typeof AssetsVideo>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
