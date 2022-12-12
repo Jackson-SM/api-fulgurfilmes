@@ -20,9 +20,7 @@ export default class AuthController {
 
   public async verify({ auth }: HttpContextContract) {
     const user = await auth.use('api').authenticate()
-    return {
-      user,
-    }
+    return user
   }
 
   public async register({ auth, request }: HttpContextContract) {
