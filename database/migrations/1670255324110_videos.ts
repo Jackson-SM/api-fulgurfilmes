@@ -5,7 +5,12 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').primary().unique().notNullable()
+      table
+        .uuid('id')
+        .primary()
+        .unique()
+        .notNullable()
+        .defaultTo(this.db.rawQuery('uuid_generate_v4()').knexQuery)
       table.string('title').notNullable()
       table.text('sinopse').notNullable()
       table.string('type').notNullable()

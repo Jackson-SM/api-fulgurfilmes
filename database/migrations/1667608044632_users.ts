@@ -5,14 +5,15 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').primary().unique()
+      table
+        .uuid('id')
+        .primary()
+        .unique()
+        .defaultTo(this.db.rawQuery('uuid_generate_v4()').knexQuery)
       table.string('email').notNullable().unique()
       table.string('name').notNullable()
       table.string('password').notNullable()
       table.integer('level').defaultTo(1).notNullable()
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
