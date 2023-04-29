@@ -1,3 +1,5 @@
+# API Fulgur Filmes
+
 ## Objetivo da Aplicação:
 
 > O objetivo da minha aplicação é criar um site de catálogos de filmes com recursos avançados de pesquisa e gerenciamento de listas, com uma interface amigável e responsiva para oferecer aos usuários uma experiência completa e envolvente na busca por novos filmes. Para alcançar esse objetivo, a aplicação será desenvolvida utilizando o framework AdonisJS, o que permitirá um desenvolvimento mais rápido e seguro. Além disso, será implementada uma camada de autenticação para que os usuários possam criar suas próprias contas e terem acesso aos recursos personalizados do site. Os usuários poderão pesquisar filmes por título ou gênero, filtrar os resultados por classificação indicativa, criar e gerenciar suas próprias listas de filmes favoritos, avaliar e comentar sobre os filmes. O site terá um design limpo e moderno para oferecer a melhor experiência possível aos usuários.
