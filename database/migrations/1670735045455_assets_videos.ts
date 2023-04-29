@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id').primary()
       table.string('cover_image').defaultTo('default').notNullable()
       table.string('background_image').defaultTo('default').notNullable()
-      table.uuid('video_id').references('videos.id').onDelete('CASCADE')
+      table.uuid('video_id').references('videos.id').onDelete('CASCADE').notNullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

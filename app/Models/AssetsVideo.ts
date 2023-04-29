@@ -12,7 +12,7 @@ export default class AssetsVideo extends BaseModel {
   public background_image: string
 
   @column()
-  public videoId: number
+  public videoId: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

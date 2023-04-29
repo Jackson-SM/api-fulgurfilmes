@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import AssetsVideo from './AssetsVideo'
 
 export default class Video extends BaseModel {
