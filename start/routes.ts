@@ -28,7 +28,6 @@ Route.group(() => {
         '*': ['auth'],
       })
       .apiOnly()
-      .except(['store'])
 
     Route.group(() => {
       Route.post('/login', 'AuthController.login')

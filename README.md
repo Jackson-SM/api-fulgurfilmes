@@ -48,3 +48,32 @@ npm run dev
 
 - Estrutura MVC
 - API RESTFul
+
+### Controllers
+- AuthController - Responsável por controlar a autenticação da aplicação.
+- UsersController - Controla os dados relacionados ao usuário.
+- VideosController - Controla qualquer dado relacionado a filmes / videos / curta-metragem.
+
+### Rotas Padronizadas.
+- .../index - Listar todos.
+- .../show - Exibir apenas um.
+- .../update - Modificar apenas um.
+- .../destroy - Deletar apenas um.
+
+### Rotas e Responsabilidades
+- **/auth**
+  - /login - Fazer login e e autenticar o usuário
+  - /logout - Despachar a autenticação do usuário
+  - /register - Registrar o usuário e autenticar
+  - /verify - Verificar a autenticação do usuário.
+- **/users**
+  - /index - Listar os usuários
+  - /show - Mostrar um usuário específico
+  - /update - Modificar os dados de um usuário
+  - /destroy - Deletar um usuário
+- **/video**
+  - index - Listar todos os vídeos
+  - store - Adicionar um vídeo
+  - show - Listar apenas um vídeo específico
+  - update - Modificar um vídeo
+  - destroy - Deletar um vídeo do banco de dados.
