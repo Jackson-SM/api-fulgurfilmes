@@ -54,7 +54,7 @@ export default class VideosController {
       name: backgroundImageNewName,
     })
 
-    const assetsVideo = await AssetsVideo.create({
+    await AssetsVideo.create({
       cover_image: coverImageNewName,
       background_image: backgroundImageNewName,
       videoId: video.id,

@@ -10,7 +10,7 @@ export default class AuthController {
     return token.toJSON()
   }
 
-  public async logout({ auth, response }: HttpContextContract) {
+  public async logout({ auth }: HttpContextContract) {
     await auth.use('api').logout()
 
     return {
@@ -26,7 +26,7 @@ export default class AuthController {
   public async register({ auth, request }: HttpContextContract) {
     const { email, name, password } = request.only(['email', 'name', 'password'])
 
-    const user = await User.create({
+    await User.create({
       email,
       name,
       password,
